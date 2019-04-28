@@ -1,0 +1,211 @@
+#coding: utf-8
+import select, socket, queue, struct, pymysql, enum, time
+
+# 消息分发类型
+class MsgTypes(enum.Enum):
+    RegisterMsg = 0,
+    LoginMsg = 1,
+    MD5MEEAGE = 2,
+    MD5SELECT = 3,
+
+# 消息返回类型
+class SendType(enum.Enum):
+    RegisterMsg = 0,
+    LoginMsg = 1,
+    MD5MEEAGE = 2,
+    MD5SELECT = 3,
+
+# ServerSocket Class
+class Server:
+    dictlist = {}           # 保存套接字与唯一标识
+    def __init__(self):
+        # 创建服务器日志（记录错误信息等）
+        self.sServer = socket.socket(socket.AF_INET, socket.SOCK_STREAM)                # 创建Socket
+        self.sServer.bind(("127.0.0.1", 13245))                                         # 绑定Socket
+        self.sServer.setblocking(False)                                                 # 设置Socket字非阻塞
+        self.sServer.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)              # 设置Socket值选项
+        self.sServer.listen(10)                                                         # 最大Socket监听
+        self.rlistArr =[self.sServer]                                                   # select rlist or xlist
+        self.wlistArr = []                                                              # select wlist
+        self.msglistArr = {}                                                            # 保存循环队列中消息
+        self.SaveAccount= []                                                            # 保存好友列表信息
+        self.gourp1 = []                                                                # 动态更新群聊成员
+        # 连接数据库 验证
+        self.config = pymysql.connect(host='127.0.0.1', user='root', password='mysql', database='db_users', port=3306, charset='gbk')
+
+    # 安全卫士SQL操作 #
+    # 登录验证SQL
+    def loginSql(self, name, passwd):
+        # 循环数据且对比保存当前账户所有信息
+        for ii in self.info:
+            if name and passwd in ii:
+                return 1
+        return 0
+    # 注册用户SQL
+    def registerSql(self, name, passwd, call, age, sex):
+        for ii in self.info:
+            if name in ii:
+                return 0
+        try:
+            sql = 'INSERT INTO register_user(Account, Passwd, Calls, Age, Sex) VALUES (\'%s\',\'%s\', \'%s\', \'%s\', \'%s\');' % (
+            name, passwd, call, age, sex)
+            self.cur.execute(sql)
+            self.config.commit()
+            return 1
+        except Exception as info:
+            return 0
+
+    # 返回SQL查询
+    def getresult(self, mysql):
+        try:
+            self.cur.execute(mysql)
+            s = self.cur.fetchall()
+            return len(s), s
+        except Exception as msg:
+            # 防止数据被损坏
+            self.cur.rollback()
+            print(msg)
+
+    # 解包及分发SQL操作
+    def unpackMsg(self, data, MsgType):
+        operCode = -1
+        # 创建游标
+        self.cur = self.config.cursor()
+        # 注册消息
+        # if MsgType == MsgTypes.RegisterMsg.value[0]:
+        #     Re_account, = struct.unpack('20s', data[8:28])
+        #     Re_passwd,  = struct.unpack('32s', data[28:60])
+        #     Re_call,    = struct.unpack('26s', data[60:86])
+        #     Re_age,     = struct.unpack('8s', data[86:94])
+        #     Re_sex,     = struct.unpack('4s', data[94:98])
+        #     Re_account = Re_account.decode('utf16').strip('\x00')
+        #     Re_call = Re_call.decode('utf16').strip('\x00')
+        #     Re_passwd = Re_passwd.decode('utf16').strip('\x00')
+        #     Re_age = Re_age.decode('utf16').strip('\x00')
+        #     Re_sex = Re_sex.decode('utf16').strip('\x00')
+        #     operCode = self.registerSql(Re_account, Re_call, Re_passwd, Re_age, Re_sex)
+        # # 登录消息
+        # elif MsgType == MsgTypes.LoginMsg.value[0]:
+        #     MsgName, = struct.unpack('24s', data[8:32])
+        #     MsgPasswd, = struct.unpack('30s', data[32:62])
+        #     name = MsgName.decode('utf16').strip('\x00')
+        #     pwd = MsgPasswd.decode('utf16').strip('\x00')
+        #     operCode = self.loginSql(name,pwd)
+        # MD5样本上传
+        if MsgType == MsgTypes.MD5MEEAGE.value[0]:
+            Md5Size, Md5Vales = struct.unpack('i36s', data[8:48])
+            values = Md5Vales.decode('utf8').strip('\x00')
+            print((values,))
+            sql = 'INSERT INTO md5(MD5values, MD5szieof) VALUES (\'%s\',%i);' % (values, Md5Size)
+            self.cur.execute(sql)
+            self.config.commit()
+            return 1
+
+        # MD5样本查询
+        elif MsgType == MsgTypes.MD5SELECT.value[0]:
+            Md5SizeSelect, Md5ValeSelect = struct.unpack('i36s', data[8:48])
+            valuesSelect = Md5ValeSelect.decode('utf8').strip('\x00')
+            sql = 'SELECT MD5values FROM md5;'
+            index = self.cur.execute(sql)
+            info = self.cur.fetchmany(index)
+            # 进行循环对比
+            for ii in info:
+                if valuesSelect == ii[0]:
+                    return 1
+            return 0
+
+        # 返回操作码清理游标操作
+        self.cur.close()
+        return operCode
+
+    # 执行select的模型
+    def Perform(self):
+        while True:
+            # 阻塞接收客户端发来的消息
+            rlists, wlists, xlists = select.select(self.rlistArr, self.wlistArr, self.rlistArr)
+            # 读消息循环
+            for s in rlists:
+                    # 如果是服务器Sock产生的 客户端接入
+                    if s is self.sServer:
+                        # 被动接收一个请求(setblocking已设置非阻塞)
+                        cConnection, cClienAdrress = s.accept()
+                        # 友善提示
+                        # cConnection.send(str("连接成功").encode('utf16'))
+                        # 设置为False
+                        cConnection.setblocking(False)
+                        # 添加到读临时保存列表
+                        self.rlistArr.append(cConnection)
+                        print(cConnection.getpeername(), "接入了服务器")
+                    else:
+                            # 接收客户端发来的消息
+                            data = s.recv(1032)
+                            # 保存到字典
+                            self.msglistArr[s] = queue.Queue()
+                            # 添加到输出消息队列
+                            self.msglistArr[s].put(data)
+                            # 把要发送消息的套接字保存到output列表中
+                            self.wlistArr.append(s)
+                            if data:
+                                # 获取类型、句柄、字节长度
+                                MsgHwnd, MsgType= struct.unpack('ii', data[0:8])
+                                # 返回操作码，注意因为这里判断，因为是异步所以一直循环消息
+                                if 0 < MsgHwnd:
+                                    operCode = self.unpackMsg(data, MsgType)
+                                    # 注册处理
+                                    if operCode == 1 and MsgType == MsgTypes.RegisterMsg.value[0]:
+                                        s.send(struct.pack('iii20s', SendType.RegisterMsg.value[0], MsgHwnd, 1,
+                                                           '注册成功'.encode('GBK')))
+                                    elif operCode == 0 and MsgType == MsgTypes.RegisterMsg.value[0]:
+                                        s.send(struct.pack('iii20s', SendType.RegisterMsg.value[0], MsgHwnd, 0,
+                                                           '注册失败'.encode('GBK')))
+                                    # 登录处理
+                                    elif operCode == 1 and MsgType == MsgTypes.LoginMsg.value[0]:
+                                        s.send(struct.pack('iii24s', SendType.LoginMsg.value[0], MsgHwnd, 1,
+                                                           '登录成功'.encode('GBK')))
+                                        MsgName, = struct.unpack('24s', data[8:32])
+                                        name = MsgName.decode('utf16').strip('\x00')
+                                        # 保存键值
+                                        Server.dictlist[name] = s
+                                    elif operCode == 0 and MsgType == MsgTypes.LoginMsg.value[0]:
+                                        s.send(struct.pack('iii24s', SendType.LoginMsg.value[0], MsgHwnd, 0,
+                                                           '用户或账户名错误'.encode('GBK')))
+                                    # MD5样本查询处理
+                                    elif operCode == 1 and MsgType == MsgTypes.MD5MEEAGE.value[0]:
+                                        s.send(struct.pack('iii', MsgHwnd, SendType.MD5MEEAGE.value[0], 1))
+                                    elif operCode == 0 and MsgType == MsgTypes.MD5MEEAGE.value[0]:
+                                        s.send(struct.pack('iii', MsgHwnd, SendType.MD5MEEAGE.value[0], 0))
+                                    # MD5样本上传处理
+                                    elif operCode == 1 and MsgType == MsgTypes.MD5SELECT.value[0]:
+                                        s.send(struct.pack('iii148s', MsgHwnd, SendType.MD5SELECT.value[0], 1, data))
+                                    else:
+                                        pass
+                            else:
+                                # 发送获取的消息到服务器
+                                print(s.getpeername(), "离开了服务器")
+                                # 就是接收不到消息了删除读的sock
+                                self.rlistArr.remove(s)
+                                # 如果写中还有则删除
+                                if s in self.wlistArr :
+                                    self.wlistArr.remove(s)
+                                del self.msglistArr[s]
+
+            # 写消息循环
+            for s in wlists:
+                try:
+                    if s in self.msglistArr:
+                        msg = self.msglistArr[s].get_nowait()
+                except queue.Empty:
+                    self.wlistArr.remove(s)
+                for client in self.rlistArr:
+                    if client is not self.sServer and client is not s:
+                        # 会出Bug未解决
+                       pass
+                # self.wlistArr.remove(s)  不删除会有Bug
+            # 异常消息循环
+            for s in xlists:
+                print(s.getpeername(), "产生了异常")
+
+# 主函数入口
+if __name__ == '__main__':
+    server = Server()
+    server.Perform()
