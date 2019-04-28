@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="主窗口">
+      <UniqueIdentifier>{43c167d0-a765-4ae6-843e-2535d99f9549}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="变参Tab">
+      <UniqueIdentifier>{29a3bc81-58fb-40b6-b39f-4a304a9d8a9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="内存优化">
+      <UniqueIdentifier>{068ca2b4-6537-4dcd-bb51-a65f4c29bfce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="垃圾清理">
+      <UniqueIdentifier>{da6db4e7-d1f6-4490-ad40-fa21b106a866}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件管理">
+      <UniqueIdentifier>{06359200-d665-4c40-9522-59910be80488}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="进程管理">
+      <UniqueIdentifier>{21e8aeeb-e64e-4881-949e-2496f9c834e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PE文件分析">
+      <UniqueIdentifier>{8928a2ca-6192-4ad4-bcf9-1dfa0f69b820}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="区段查看">
+      <UniqueIdentifier>{ac61544f-6a95-4c46-9032-83a4a895b088}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="目录表信息">
+      <UniqueIdentifier>{2b8631d7-7697-47a0-bd41-faa779ab1a6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="数据目录表">
+      <UniqueIdentifier>{6ddace79-17dd-4746-94f7-1386c2bf3f3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="位置计算">
+      <UniqueIdentifier>{75fd8f97-b43c-4822-84e5-cfa850c65190}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RVA转换FOA">
+      <UniqueIdentifier>{dbff5e35-59a0-41f0-aa4d-0c70675e9dcd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="线程%255c堆%255c模块">
+      <UniqueIdentifier>{ea2ada85-ad4d-4d98-ba58-30acf48ab005}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="零度查杀">
+      <UniqueIdentifier>{df79aa40-0c66-4e92-a2e0-32682a47aff8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="网络攻防">
+      <UniqueIdentifier>{4af2b3fb-e932-419d-8795-75e0291b3be7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="网络编程">
+      <UniqueIdentifier>{9af02a80-01c0-4aef-938a-af61d2ad40cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="文件信息">
+      <UniqueIdentifier>{99d3113b-e51f-41fc-bee8-325c39201d37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MD5计算">
+      <UniqueIdentifier>{5a1c97e8-d53e-4c6c-b92f-97fbf6f2cecf}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ProgramStart.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MasterTabCtrl.h">
+      <Filter>变参Tab</Filter>
+    </ClInclude>
+    <ClInclude Include="MasterWindows.h">
+      <Filter>主窗口</Filter>
+    </ClInclude>
+    <ClInclude Include="Tab_CleanruDialogbox.h">
+      <Filter>垃圾清理</Filter>
+    </ClInclude>
+    <ClInclude Include="Tab_MemoryDialogbox.h">
+      <Filter>内存优化</Filter>
+    </ClInclude>
+    <ClInclude Include="Tab_PEfileanalDialogbox.h">
+      <Filter>PE文件分析</Filter>
+    </ClInclude>
+    <ClInclude Include="Tab_ProcessmangDialogbox.h">
+      <Filter>进程管理</Filter>
+    </ClInclude>
+    <ClInclude Include="Tab_SoftwarmangDialogbox.h">
+      <Filter>软件管理</Filter>
+    </ClInclude>
+    <ClInclude Include="ThreadDialogbox.h">
+      <Filter>线程%255c堆%255c模块</Filter>
+    </ClInclude>
+    <ClInclude Include="Tab_FilePosition.h">
+      <Filter>位置计算</Filter>
+    </ClInclude>
+    <ClInclude Include="Tab_SectionView.h">
+      <Filter>区段查看</Filter>
+    </ClInclude>
+    <ClInclude Include="Tab_DirectoryTables.h">
+      <Filter>目录表信息</Filter>
+    </ClInclude>
+    <ClInclude Include="Tab_ExportTable.h">
+      <Filter>数据目录表</Filter>
+    </ClInclude>
+    <ClInclude Include="Tab_resourceTables.h">
+      <Filter>数据目录表</Filter>
+    </ClInclude>
+    <ClInclude Include="Tab_RELOCATION.h">
+      <Filter>数据目录表</Filter>
+    </ClInclude>
+    <ClInclude Include="RVAtoFOA.h">
+      <Filter>RVA转换FOA</Filter>
+    </ClInclude>
+    <ClInclude Include="Tab_ImportTable.h">
+      <Filter>数据目录表</Filter>
+    </ClInclude>
+    <ClInclude Include="HeapInfoDialogBox.h">
+      <Filter>线程%255c堆%255c模块</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleInfoDialogBox.h">
+      <Filter>线程%255c堆%255c模块</Filter>
+    </ClInclude>
+    <ClInclude Include="Tab_NetworktoolDialogbox.h">
+      <Filter>网络攻防</Filter>
+    </ClInclude>
+    <ClInclude Include="Tab_LDCS.h">
+      <Filter>零度查杀</Filter>
+    </ClInclude>
+    <ClInclude Include="MFCsockclass.h">
+      <Filter>网络编程</Filter>
+    </ClInclude>
+    <ClInclude Include="StructDataofStream.h">
+      <Filter>网络编程</Filter>
+    </ClInclude>
+    <ClInclude Include="FileInfo.h">
+      <Filter>文件信息</Filter>
+    </ClInclude>
+    <ClInclude Include="MD5.h">
+      <Filter>MD5计算</Filter>
+    </ClInclude>
+    <ClInclude Include="WhiteDialogBox.h">
+      <Filter>零度查杀</Filter>
+    </ClInclude>
+    <ClInclude Include="BlacklistDialog.h">
+      <Filter>零度查杀</Filter>
+    </ClInclude>
+    <ClInclude Include="Tab_TlsTables.h">
+      <Filter>数据目录表</Filter>
+    </ClInclude>
+    <ClInclude Include="Tab_Dlltables.h">
+      <Filter>数据目录表</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ProgramStart.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MasterWindows.cpp">
+      <Filter>主窗口</Filter>
+    </ClCompile>
+    <ClCompile Include="MasterTabCtrl.cpp">
+      <Filter>变参Tab</Filter>
+    </ClCompile>
+    <ClCompile Include="Tab_CleanruDialogbox.cpp">
+      <Filter>垃圾清理</Filter>
+    </ClCompile>
+    <ClCompile Include="Tab_MemoryDialogbox.cpp">
+      <Filter>内存优化</Filter>
+    </ClCompile>
+    <ClCompile Include="Tab_PEfileanalDialogbox.cpp">
+      <Filter>PE文件分析</Filter>
+    </ClCompile>
+    <ClCompile Include="Tab_ProcessmangDialogbox.cpp">
+      <Filter>进程管理</Filter>
+    </ClCompile>
+    <ClCompile Include="Tab_SoftwarmangDialogbox.cpp">
+      <Filter>软件管理</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreadDialogbox.cpp">
+      <Filter>线程%255c堆%255c模块</Filter>
+    </ClCompile>
+    <ClCompile Include="Tab_FilePosition.cpp">
+      <Filter>位置计算</Filter>
+    </ClCompile>
+    <ClCompile Include="Tab_SectionView.cpp">
+      <Filter>区段查看</Filter>
+    </ClCompile>
+    <ClCompile Include="Tab_DirectoryTables.cpp">
+      <Filter>目录表信息</Filter>
+    </ClCompile>
+    <ClCompile Include="Tab_ExportTable.cpp">
+      <Filter>数据目录表</Filter>
+    </ClCompile>
+    <ClCompile Include="Tab_resourceTables.cpp">
+      <Filter>数据目录表</Filter>
+    </ClCompile>
+    <ClCompile Include="Tab_RELOCATION.cpp">
+      <Filter>数据目录表</Filter>
+    </ClCompile>
+    <ClCompile Include="Tab_ImportTable.cpp">
+      <Filter>数据目录表</Filter>
+    </ClCompile>
+    <ClCompile Include="RVAtoFOA.cpp">
+      <Filter>RVA转换FOA</Filter>
+    </ClCompile>
+    <ClCompile Include="HeapInfoDialogBox.cpp">
+      <Filter>线程%255c堆%255c模块</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleInfoDialogBox.cpp">
+      <Filter>线程%255c堆%255c模块</Filter>
+    </ClCompile>
+    <ClCompile Include="Tab_NetworktoolDialogbox.cpp">
+      <Filter>网络攻防</Filter>
+    </ClCompile>
+    <ClCompile Include="Tab_LDCS.cpp">
+      <Filter>零度查杀</Filter>
+    </ClCompile>
+    <ClCompile Include="MFCsockclass.cpp">
+      <Filter>网络编程</Filter>
+    </ClCompile>
+    <ClCompile Include="FileInfo.cpp">
+      <Filter>文件信息</Filter>
+    </ClCompile>
+    <ClCompile Include="MD5.cpp">
+      <Filter>MD5计算</Filter>
+    </ClCompile>
+    <ClCompile Include="WhiteDialogBox.cpp">
+      <Filter>零度查杀</Filter>
+    </ClCompile>
+    <ClCompile Include="BlacklistDialog.cpp">
+      <Filter>零度查杀</Filter>
+    </ClCompile>
+    <ClCompile Include="Tab_TlsTables.cpp">
+      <Filter>数据目录表</Filter>
+    </ClCompile>
+    <ClCompile Include="Tab_Dlltables.cpp">
+      <Filter>数据目录表</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Securityguards.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\图片资源管理\snowflake_48px_1196813_easyicon.net.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="..\图片资源管理\wolf_72px_504554_easyicon.net.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+  </ItemGroup>
+</Project>

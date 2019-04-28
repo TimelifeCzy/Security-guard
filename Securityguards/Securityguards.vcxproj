@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{89478276-FF15-4955-8D0D-623528B34A7E}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Securityguards</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>false</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="BlacklistDialog.h" />
+    <ClInclude Include="FileInfo.h" />
+    <ClInclude Include="HeapInfoDialogBox.h" />
+    <ClInclude Include="MasterTabCtrl.h" />
+    <ClInclude Include="MasterWindows.h" />
+    <ClInclude Include="MD5.h" />
+    <ClInclude Include="MFCsockclass.h" />
+    <ClInclude Include="ModuleInfoDialogBox.h" />
+    <ClInclude Include="ProgramStart.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="RVAtoFOA.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="StructDataofStream.h" />
+    <ClInclude Include="Tab_CleanruDialogbox.h" />
+    <ClInclude Include="Tab_DirectoryTables.h" />
+    <ClInclude Include="Tab_Dlltables.h" />
+    <ClInclude Include="Tab_ExportTable.h" />
+    <ClInclude Include="Tab_FilePosition.h" />
+    <ClInclude Include="Tab_ImportTable.h" />
+    <ClInclude Include="Tab_LDCS.h" />
+    <ClInclude Include="Tab_MemoryDialogbox.h" />
+    <ClInclude Include="Tab_NetworktoolDialogbox.h" />
+    <ClInclude Include="Tab_PEfileanalDialogbox.h" />
+    <ClInclude Include="Tab_ProcessmangDialogbox.h" />
+    <ClInclude Include="Tab_RELOCATION.h" />
+    <ClInclude Include="Tab_resourceTables.h" />
+    <ClInclude Include="Tab_SectionView.h" />
+    <ClInclude Include="Tab_SoftwarmangDialogbox.h" />
+    <ClInclude Include="Tab_TlsTables.h" />
+    <ClInclude Include="ThreadDialogbox.h" />
+    <ClInclude Include="WhiteDialogBox.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="BlacklistDialog.cpp" />
+    <ClCompile Include="FileInfo.cpp" />
+    <ClCompile Include="HeapInfoDialogBox.cpp" />
+    <ClCompile Include="MasterTabCtrl.cpp" />
+    <ClCompile Include="MasterWindows.cpp" />
+    <ClCompile Include="MD5.cpp" />
+    <ClCompile Include="MFCsockclass.cpp" />
+    <ClCompile Include="ModuleInfoDialogBox.cpp" />
+    <ClCompile Include="ProgramStart.cpp" />
+    <ClCompile Include="RVAtoFOA.cpp" />
+    <ClCompile Include="Tab_CleanruDialogbox.cpp" />
+    <ClCompile Include="Tab_DirectoryTables.cpp" />
+    <ClCompile Include="Tab_Dlltables.cpp" />
+    <ClCompile Include="Tab_ExportTable.cpp" />
+    <ClCompile Include="Tab_FilePosition.cpp" />
+    <ClCompile Include="Tab_ImportTable.cpp" />
+    <ClCompile Include="Tab_LDCS.cpp" />
+    <ClCompile Include="Tab_MemoryDialogbox.cpp" />
+    <ClCompile Include="Tab_NetworktoolDialogbox.cpp" />
+    <ClCompile Include="Tab_PEfileanalDialogbox.cpp" />
+    <ClCompile Include="Tab_ProcessmangDialogbox.cpp" />
+    <ClCompile Include="Tab_RELOCATION.cpp" />
+    <ClCompile Include="Tab_resourceTables.cpp" />
+    <ClCompile Include="Tab_SectionView.cpp" />
+    <ClCompile Include="Tab_SoftwarmangDialogbox.cpp" />
+    <ClCompile Include="Tab_TlsTables.cpp" />
+    <ClCompile Include="ThreadDialogbox.cpp" />
+    <ClCompile Include="WhiteDialogBox.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Securityguards.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\图片资源管理\snowflake_48px_1196813_easyicon.net.ico" />
+    <Image Include="..\图片资源管理\wolf_72px_504554_easyicon.net.bmp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="Securityguards.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
